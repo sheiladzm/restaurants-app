@@ -81,11 +81,17 @@ public class RestaurantJdbcDao implements RestaurantDao {
     @Override
     public void deleteRestaurant(int restaurantId) {
 
+        String sql = "delete from restaurants where restaurant_id = ?";
+        template.update(sql, restaurantId);
+
     }
 
     //Update a specific restaurant from the database
     @Override
     public void updateRestaurant(int restaurantId, Restaurant restaurantToUpdate) {
+
+        String sql = "update restaurants set name = ?";
+        template.update(sql, restaurantToUpdate.getName());
 
     }
 
