@@ -1,10 +1,12 @@
 package com.sheila.restaurants_app.dao;
 
+import com.sheila.restaurants_app.exceptions.RestaurantNotFoundException;
 import com.sheila.restaurants_app.model.Restaurant;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 //Houses connection and concrete methods to touch the database
@@ -34,18 +36,44 @@ public class RestaurantJdbcDao implements RestaurantDao {
     //Get all restaurants from the database and build a list
     @Override
     public List<Restaurant> getRestaurants() {
-        return null;
+
+        List<Restaurant> restaurantList = new ArrayList<>();
+
+        String sql = "select * from restaurants";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while (results.next()) {
+            restaurantList.add(mapRowToRestaurant(results));
+        }
+
+        return restaurantList;
+
     }
 
     //Get a specific restaurant from the database
     @Override
     public Restaurant getRestaurant(int restaurantId) {
-        return null;
+
+        Restaurant restaurant;
+
+        String sql = "select * from restaurants where restaurant_id = ?";
+        SqlRowSet result = template.queryForRowSet(sql, restaurantId);
+        if (result.next()) {
+            restaurant = mapRowToRestaurant(result);
+        }
+        else {
+            throw new RestaurantNotFoundException();
+        }
+
+        return restaurant;
+
     }
 
     //Add a new restaurant to the database
     @Override
     public void addRestaurant(Restaurant restaurantToAdd) {
+
+        String sql = "insert into restaurants (name) values (?)";
+        template.update(sql, restaurantToAdd.getName());
 
     }
 
