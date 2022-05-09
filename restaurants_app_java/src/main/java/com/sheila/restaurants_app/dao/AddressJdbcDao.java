@@ -1,10 +1,12 @@
 package com.sheila.restaurants_app.dao;
 
+import com.sheila.restaurants_app.exceptions.AddressNotFoundException;
 import com.sheila.restaurants_app.model.Address;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 //Houses connection and concrete methods to touch the database - addresses table
@@ -36,18 +38,44 @@ public class AddressJdbcDao implements AddressDao {
     //Get all addresses from the database and build a list
     @Override
     public List<Address> getAddresses() {
-        return null;
+
+        List<Address> addressList = new ArrayList<>();
+
+        String sql = "select * from addresses";
+        SqlRowSet results = template.queryForRowSet(sql);
+        while (results.next()) {
+            addressList.add(mapRowToAddress(results));
+        }
+
+        return addressList;
+
     }
 
     //Get a specific address from the database
     @Override
     public Address getAddress(int addressId) {
-        return null;
+
+        Address address;
+
+        String sql = "select * from addresses where address_id = ?";
+        SqlRowSet result = template.queryForRowSet(sql, addressId);
+        if (result.next()) {
+            address = mapRowToAddress(result);
+        }
+        else {
+            throw new AddressNotFoundException();
+        }
+
+        return address;
+
     }
 
     //Add a new address to the database
     @Override
     public void addAddress(Address addressToAdd) {
+
+        String sql = "insert into addresses (name, food_types, schedule, restaurant_id) values (?, ?, ?, ?)";
+        template.update(sql, addressToAdd.getName(), addressToAdd.getFoodTypes(), addressToAdd.getSchedule(), addressToAdd.getRestaurantId());
 
     }
 
@@ -55,11 +83,17 @@ public class AddressJdbcDao implements AddressDao {
     @Override
     public void deleteAddress(int addressId) {
 
+        String sql = "delete from addresses where address_id = ?";
+        template.update(sql, addressId);
+
     }
 
     //Update a specific address from the database
     @Override
     public void updateAddress(int addressId, Address addressToUpdate) {
+
+        String sql = "update addresses set name = ?, food_types = ?, schedule = ?, restaurant_id = ?";
+        template.update(sql, addressToUpdate.getName(), addressToUpdate.getFoodTypes(), addressToUpdate.getSchedule(), addressToUpdate.getRestaurantId());
 
     }
 
