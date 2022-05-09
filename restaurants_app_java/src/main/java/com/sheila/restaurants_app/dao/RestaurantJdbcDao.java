@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-//Houses connection and concrete methods to touch the database
+//Houses connection and concrete methods to touch the database - restaurants table
 public class RestaurantJdbcDao implements RestaurantDao {
 
     //Initiate JdbcTemplate to use queryForRowSet() and queryForObject() methods that take in sql statements
@@ -21,7 +21,6 @@ public class RestaurantJdbcDao implements RestaurantDao {
     }
 
     //Transform database row into an object
-
     private Restaurant mapRowToRestaurant(SqlRowSet result) {
 
         Restaurant retrievedRestaurant = new Restaurant();
