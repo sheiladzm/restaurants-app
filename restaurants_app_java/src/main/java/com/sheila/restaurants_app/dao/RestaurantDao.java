@@ -14,6 +14,8 @@ public interface RestaurantDao {
 
     Restaurant getRestaurant(int restaurantId);
 
+    public List<Restaurant> getRestaurantsWithAddresses();
+
     void addRestaurant(Restaurant restaurantToAdd);
 
     void deleteRestaurant(int restaurantId);

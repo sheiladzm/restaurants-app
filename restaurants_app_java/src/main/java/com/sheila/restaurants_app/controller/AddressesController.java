@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 //API Controller that receives incoming web requests and calls methods that retrieve/manipulate data
+
 @RestController
 @RequestMapping("/api") //Root path
 public class AddressesController {

@@ -1,9 +1,6 @@
 package com.sheila.restaurants_app.controller;
 
-//API Controller that receives incoming web requests and calls methods that retrieve/manipulate data
-
 import com.sheila.restaurants_app.dao.RestaurantDao;
-import com.sheila.restaurants_app.model.Address;
 import com.sheila.restaurants_app.model.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.List;
+
+//API Controller that receives incoming web requests and calls methods that retrieve/manipulate data
 
 @RestController
 @RequestMapping("/api") //Root path
@@ -25,15 +24,25 @@ public class RestaurantsController {
         System.out.println(msg + " at " + timestamp);
     }
 
-    //View all restaurants (names only)
+    //View all restaurants (names and their addresses)
     @GetMapping(path= {"/allRestaurants", "/"})
-    public List<Restaurant> getAllRestaurants()  {
+    public List<Restaurant> getAllRestaurantsWithAddresses()  {
 
         logTimestamp("Getting all restaurants");
-        List<Restaurant> allRestaurants = theRestaurant.getRestaurants();
+        List<Restaurant> allRestaurants = theRestaurant.getRestaurantsWithAddresses();
         return allRestaurants;
 
     }
+
+//    //View all restaurants (names only)
+//    @GetMapping(path= {"/allRestaurantsOnly", "/"})
+//    public List<Restaurant> getAllRestaurants()  {
+//
+//        logTimestamp("Getting all restaurants");
+//        List<Restaurant> allRestaurantsOnly = theRestaurant.getRestaurants();
+//        return allRestaurantsOnly;
+//
+//    }
 
     //View a specific restaurant
     @GetMapping("/restaurant/{restaurantId}")
