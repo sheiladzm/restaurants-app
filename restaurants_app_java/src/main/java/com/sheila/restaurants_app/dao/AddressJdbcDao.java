@@ -4,12 +4,15 @@ import com.sheila.restaurants_app.exceptions.AddressNotFoundException;
 import com.sheila.restaurants_app.model.Address;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
 //Houses connection and concrete methods to touch the database - addresses table
+
+@Component
 public class AddressJdbcDao implements AddressDao {
 
     //Initiate JdbcTemplate to use queryForRowSet() and queryForObject() methods that take in sql statements

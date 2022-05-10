@@ -80,7 +80,7 @@ public class RestaurantJdbcDao implements RestaurantDao {
     @Override
     public void deleteRestaurant(int restaurantId) {
 
-        String sql = "delete from restaurants where restaurant_id = ?";
+        String sql = "delete from restaurants where restaurant_id = ?; delete from addresses";
         template.update(sql, restaurantId);
 
     }
