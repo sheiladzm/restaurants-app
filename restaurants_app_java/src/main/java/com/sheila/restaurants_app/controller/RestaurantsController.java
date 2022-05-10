@@ -24,25 +24,25 @@ public class RestaurantsController {
         System.out.println(msg + " at " + timestamp);
     }
 
-    //View all restaurants (names and their addresses)
-    @GetMapping(path= {"/allRestaurants", "/"})
-    public List<Restaurant> getAllRestaurantsWithAddresses()  {
-
-        logTimestamp("Getting all restaurants");
-        List<Restaurant> allRestaurants = theRestaurant.getRestaurantsWithAddresses();
-        return allRestaurants;
-
-    }
-
-//    //View all restaurants (names only)
-//    @GetMapping(path= {"/allRestaurantsOnly", "/"})
-//    public List<Restaurant> getAllRestaurants()  {
+//    //View all restaurants (names and their addresses)
+//    @GetMapping(path= {"/allRestaurants", "/"})
+//    public List<Restaurant> getAllRestaurantsWithAddresses()  {
 //
-//        logTimestamp("Getting all restaurants");
-//        List<Restaurant> allRestaurantsOnly = theRestaurant.getRestaurants();
-//        return allRestaurantsOnly;
+//        logTimestamp("Getting all restaurants and their addresses");
+//        List<Restaurant> allRestaurants = theRestaurant.getRestaurantsWithAddresses();
+//        return allRestaurants;
 //
 //    }
+
+    //View all restaurants (names only)
+    @GetMapping(path= {"/allRestaurantsOnly", "/"})
+    public List<Restaurant> getAllRestaurants()  {
+
+        logTimestamp("Getting all restaurants");
+        List<Restaurant> allRestaurantsOnly = theRestaurant.getRestaurants();
+        return allRestaurantsOnly;
+
+    }
 
     //View a specific restaurant
     @GetMapping("/restaurant/{restaurantId}")

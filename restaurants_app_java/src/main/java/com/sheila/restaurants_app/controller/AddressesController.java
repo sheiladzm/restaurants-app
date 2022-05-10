@@ -24,13 +24,23 @@ public class AddressesController {
         System.out.println(msg + " at " + timestamp);
     }
 
-    //View all locations of all restaurants
-    @GetMapping(path= {"/allAddresses", "/"})
-    public List<Address> getAllAddresses()  {
+    //View all locations
+    @GetMapping(path= {"/allAddressesOnly", "/"})
+    public List<Address> getAllAddressesOnly()  {
 
         logTimestamp("Getting all addresses");
         List<Address> allAddresses = theAddress.getAddresses();
         return allAddresses;
+
+    }
+
+    //View all restaurants and their locations
+    @GetMapping(path= {"/allAddressesAndRestaurants", "/"})
+    public List<Address> getAllAddressesAndRestaurants()  {
+
+        logTimestamp("Getting all restaurants with their addresses");
+        List<Address> allAddressesAndRestaurants = theAddress.getAddressesWithRestaurants();
+        return allAddressesAndRestaurants;
 
     }
 
@@ -41,6 +51,16 @@ public class AddressesController {
         logTimestamp("Returning address " + addressId);
         Address address = theAddress.getAddress(addressId);
         return address;
+
+    }
+
+    //View a specific location of a restaurant and its restaurant name, address, food, schedule
+    @GetMapping("/addressAndRestaurant/{addressId}")
+    public Address getAddressByIdAndRestaurant(@PathVariable int addressId) {
+
+        logTimestamp("Returning address " + addressId);
+        Address addressById = theAddress.getAddressMoreDetails(addressId);
+        return addressById;
 
     }
 

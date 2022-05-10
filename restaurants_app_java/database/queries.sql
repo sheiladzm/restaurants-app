@@ -46,3 +46,10 @@ order by restaurants.name;
 select name
 from addresses
 where addresses.restaurant_id = 4;
+
+--get specific restaurant name, address name, food types, schedule
+
+select restaurants.name, addresses.name, addresses.food_types, addresses.schedule
+from addresses
+full join restaurants on restaurants.restaurant_id = addresses.restaurant_id
+where addresses.address_id = ?;

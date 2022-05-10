@@ -11,7 +11,11 @@ public interface AddressDao {
 
     List<Address> getAddresses();
 
+    List<Address> getAddressesWithRestaurants();
+
     Address getAddress(int addressId);
+
+    Address getAddressMoreDetails(int addressId);
 
     void addAddress(Address addressToAdd);
 

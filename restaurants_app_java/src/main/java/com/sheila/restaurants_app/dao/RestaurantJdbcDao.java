@@ -51,24 +51,24 @@ public class RestaurantJdbcDao implements RestaurantDao {
     }
 
     //Get all restaurants with their addresses from the database and build a list
-    @Override
-    public List<Restaurant> getRestaurantsWithAddresses() {
-
-        List<Restaurant> restaurantListWithAddresses = new ArrayList<>();
-
-        String sql = "select restaurants.name, addresses.name\n" +
-                "from addresses\n" +
-                "left join restaurants on restaurants.restaurant_id = addresses.restaurant_id\n" +
-                "group by restaurants.name, addresses.name\n" +
-                "order by restaurants.name;";
-        SqlRowSet results = template.queryForRowSet(sql);
-        while (results.next()) {
-            restaurantListWithAddresses.add(mapRowToRestaurant(results));
-        }
-
-        return restaurantListWithAddresses;
-
-    }
+//    @Override
+//    public List<Restaurant> getRestaurantsWithAddresses() {
+//
+//        List<Restaurant> restaurantListWithAddresses = new ArrayList<>();
+//
+//        String sql = "select restaurants.name, addresses.name\n" +
+//                "from restaurants\n" +
+//                "inner join addresses on addresses.restaurant_id = restaurants.restaurant_id\n" +
+//                "group by restaurants.name, addresses.name\n" +
+//                "order by restaurants.name;";
+//        SqlRowSet results = template.queryForRowSet(sql);
+//        while (results.next()) {
+//            restaurantListWithAddresses.add(mapRowToRestaurant(results));
+//        }
+//
+//        return restaurantListWithAddresses;
+//
+//    }
 
     //Get a specific restaurant from the database
     @Override
