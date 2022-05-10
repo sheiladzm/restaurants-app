@@ -4,12 +4,14 @@ import com.sheila.restaurants_app.exceptions.RestaurantNotFoundException;
 import com.sheila.restaurants_app.model.Restaurant;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
 //Houses connection and concrete methods to touch the database - restaurants table
+@Component
 public class RestaurantJdbcDao implements RestaurantDao {
 
     //Initiate JdbcTemplate to use queryForRowSet() and queryForObject() methods that take in sql statements

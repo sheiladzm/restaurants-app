@@ -40,3 +40,9 @@ select restaurants.name, addresses.name, addresses.food_types, addresses.schedul
 from addresses
 full join restaurants on restaurants.restaurant_id = addresses.restaurant_id
 order by restaurants.name;
+
+--list address names by restaurant_id
+
+select name
+from addresses
+where addresses.restaurant_id = 4;
