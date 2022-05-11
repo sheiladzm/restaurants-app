@@ -36,6 +36,6 @@ Since the timeline for this project was short, I decided on less views and compo
 
 - Open the restaurants_app_java folder in IntelliJ IDEA CE and find the file RestaurantsAppApplication.java to run the server.
 
-- Open the restaurants_app_vue folder in VSCode, type npm install on the command line, and then npm run serve
+- Open the restaurants_app_vue folder in VSCode, type "npm install" on the command line, and "npm run serve" to view the webapp via a localhost URL
 
-- You should be able to view the webapp via a localhost URL
+- You may have to refresh the display restaurant detail page a few times in order to see the locations and details on that page.
