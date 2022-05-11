@@ -2,17 +2,23 @@
 
 This is a web application that displays a list of food trucks/restaurants in San Francisco. It is built with Java and Vue with PostgreSQL for the database. Users are able to add restaurants to the current list, click on restaurant to view details such as name, addres, and food types, and can view the addresses by restaurant.
 
-I used the MVC design pattern, Spring JDBC for the backend, and integrated with a 3rd party RESTful API to make HTTP requests to the server. 
+I used Spring JDBC for the backend and integrated with a 3rd party RESTful API to make HTTP requests to the server. 
 
 An example of OOP can be found in my use of Interfaces to create complete abstraction of methods that retrieve/manipulate data in the database. Many other examples can be found throughout the backend Java application.
 
 <h3>Key points of the app's user flow, views, components, and my thought process:</h3>
 
+I decided to focus on two tables for my database (Restaurants and Addresses) and designed my Java classes, views, and components in Vue with that initial organization in mind.
+
+I used the MVC design pattern and commented on important sections such as methods to communicate/explain code to make it easy for other developers to read/understand my code and make it easy to maintain in the long-term. 
+
+<h4>Views and Components in Vue:</h4>
+
 Display View with DisplayRestaurants Component: Lists all restaurants in alphabetical order and can click on View Details to see more data such as locations of the restaurant, food types, and schedule for each location.
 
 ![Screen Shot 2022-05-11 at 8 16 53 AM](https://user-images.githubusercontent.com/101483745/167886395-6722f657-18b3-4be3-a372-3abcad48ed68.png)
 
-Example of Detail View with RestaurantDetail component: Lists all locations for a specific restaurant.
+Example of Detail View with RestaurantDetail component: Lists all locations for a specific restaurant and its corresponding details.
 
 ![Screen Shot 2022-05-11 at 8 16 27 AM](https://user-images.githubusercontent.com/101483745/167886420-548459f6-bfd0-467a-802d-6a34e607ab0a.png)
 
