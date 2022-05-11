@@ -45,3 +45,15 @@ Since there was only a short amount of time to complete this project, I decided 
 - Open the restaurants_app_vue folder in VSCode, type "npm install" on the command line, and "npm run serve" to view the webapp via a localhost URL
 
 - You may have to refresh the display restaurant detail page a few times in order to see the locations and details on that page.
+
+<h3>Future Iterations and Practices to Improve:</h3>
+
+- Add pagination
+
+- View schedule as a short link instead of full URL
+
+- Increase number of commits
+
+- Add a homepage
+
+- Add a search bar with filter functionalities 
