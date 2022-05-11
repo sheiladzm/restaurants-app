@@ -28,7 +28,7 @@ I chose a one to many relationship to describe the relationship between restaura
 
 <img width="685" alt="R-App_ERD" src="https://user-images.githubusercontent.com/101483745/167368479-a271a18e-30f7-4b7c-8048-7d5a26cd876c.png">
 
-Since the timeline for this project was short, I decided on less views and components while still being able to sort the data and making it accessible for users with a simple UI.
+Since there was only a short amount of time to complete this project, I decided on less views and components while still being able to sort the data and make it accessible for users with a simple UI.
 
 ![R-App Rough Wireframe](https://user-images.githubusercontent.com/101483745/167884880-0cc323b4-6b44-4255-a776-50c6d6a7b892.jpg)
 
