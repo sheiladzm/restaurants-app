@@ -40,7 +40,7 @@ public class RestaurantJdbcDao implements RestaurantDao {
 
         List<Restaurant> restaurantList = new ArrayList<>();
 
-        String sql = "select * from restaurants";
+        String sql = "select * from restaurants order by name";
         SqlRowSet results = template.queryForRowSet(sql);
         while (results.next()) {
             restaurantList.add(mapRowToRestaurant(results));

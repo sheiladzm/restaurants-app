@@ -55,23 +55,40 @@ public class AddressJdbcDao implements AddressDao {
     }
 
     @Override
-    public List<Address> getAddressesWithRestaurants() {
+    public List<Address> getAddressesByRestaurant(int restaurantId) {
 
-        List<Address> addressListWithRestaurants = new ArrayList<>();
+        List<Address> addressList = new ArrayList<>();
 
-        String sql = "select restaurants.name, addresses.name\n" +
-                "from addresses\n" +
-                "left join restaurants on restaurants.restaurant_id = addresses.restaurant_id\n" +
-                "group by restaurants.name, addresses.name\n" +
-                "order by restaurants.name;";
-        SqlRowSet results = template.queryForRowSet(sql);
+        String sql = "select * from addresses where restaurant_id = ?";
+        SqlRowSet results = template.queryForRowSet(sql, restaurantId);
         while (results.next()) {
-            addressListWithRestaurants.add(mapRowToAddress(results));
+            addressList.add(mapRowToAddress(results));
         }
 
-        return addressListWithRestaurants;
+        return addressList;
 
     }
+
+
+
+//    @Override
+//    public List<Address> getAddressesWithRestaurants() {
+//
+//        List<Address> addressListWithRestaurants = new ArrayList<>();
+//
+//        String sql = "select restaurants.name, addresses.name\n" +
+//                "from addresses\n" +
+//                "left join restaurants on restaurants.restaurant_id = addresses.restaurant_id\n" +
+//                "group by restaurants.name, addresses.name\n" +
+//                "order by restaurants.name;";
+//        SqlRowSet results = template.queryForRowSet(sql);
+//        while (results.next()) {
+//            addressListWithRestaurants.add(mapRowToAddress(results));
+//        }
+//
+//        return addressListWithRestaurants;
+//
+//    }
 
     //Get a specific address from the database
     @Override
@@ -92,27 +109,27 @@ public class AddressJdbcDao implements AddressDao {
 
     }
 
-    //Get a specific address from the database, displaying the restaurant name, addresses, food types, and schedule
-    @Override
-    public Address getAddressMoreDetails(int addressId) {
-
-        Address addressMoreDetails;
-
-        String sql = "select restaurants.name, addresses.name, addresses.food_types, addresses.schedule\n" +
-                "from addresses\n" +
-                "full join restaurants on restaurants.restaurant_id = addresses.restaurant_id\n" +
-                "where addresses.address_id = ?;";
-        SqlRowSet result = template.queryForRowSet(sql, addressId);
-        if (result.next()) {
-            addressMoreDetails = mapRowToAddress(result);
-        }
-        else {
-            throw new AddressNotFoundException();
-        }
-
-        return addressMoreDetails;
-
-    }
+//    //Get a specific address from the database, displaying the restaurant name, addresses, food types, and schedule
+//    @Override
+//    public Address getAddressMoreDetails(int addressId) {
+//
+//        Address addressMoreDetails;
+//
+//        String sql = "select restaurants.name, addresses.name, addresses.food_types, addresses.schedule\n" +
+//                "from addresses\n" +
+//                "full join restaurants on restaurants.restaurant_id = addresses.restaurant_id\n" +
+//                "where addresses.address_id = ?;";
+//        SqlRowSet result = template.queryForRowSet(sql, addressId);
+//        if (result.next()) {
+//            addressMoreDetails = mapRowToAddress(result);
+//        }
+//        else {
+//            throw new AddressNotFoundException();
+//        }
+//
+//        return addressMoreDetails;
+//
+//    }
 
     //Add a new address to the database
     @Override

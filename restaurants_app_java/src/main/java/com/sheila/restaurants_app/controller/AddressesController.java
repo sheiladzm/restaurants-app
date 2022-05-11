@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api") //Root path
+@CrossOrigin
 public class AddressesController {
 
     @Autowired
@@ -25,8 +26,8 @@ public class AddressesController {
     }
 
     //View all locations
-    @GetMapping(path= {"/allAddressesOnly", "/"})
-    public List<Address> getAllAddressesOnly()  {
+    @GetMapping(path= {"/allAddresses", "/"})
+    public List<Address> getAllAddresses()  {
 
         logTimestamp("Getting all addresses");
         List<Address> allAddresses = theAddress.getAddresses();
@@ -35,14 +36,14 @@ public class AddressesController {
     }
 
     //View all restaurants and their locations
-    @GetMapping(path= {"/allAddressesAndRestaurants", "/"})
-    public List<Address> getAllAddressesAndRestaurants()  {
-
-        logTimestamp("Getting all restaurants with their addresses");
-        List<Address> allAddressesAndRestaurants = theAddress.getAddressesWithRestaurants();
-        return allAddressesAndRestaurants;
-
-    }
+//    @GetMapping(path= {"/allAddressesAndRestaurants", "/"})
+//    public List<Address> getAllAddressesAndRestaurants()  {
+//
+//        logTimestamp("Getting all restaurants with their addresses");
+//        List<Address> allAddressesAndRestaurants = theAddress.getAddressesWithRestaurants();
+//        return allAddressesAndRestaurants;
+//
+//    }
 
     //View a specific location of a restaurant
     @GetMapping("/address/{addressId}")
@@ -54,15 +55,24 @@ public class AddressesController {
 
     }
 
-    //View a specific location of a restaurant and its restaurant name, address, food, schedule
-    @GetMapping("/addressAndRestaurant/{addressId}")
-    public Address getAddressByIdAndRestaurant(@PathVariable int addressId) {
+    @GetMapping("/addressesOfRestaurant/{restaurantId}")
+    public List<Address> getAddressesByRestaurantId(@PathVariable int restaurantId) {
 
-        logTimestamp("Returning address " + addressId);
-        Address addressById = theAddress.getAddressMoreDetails(addressId);
-        return addressById;
+        logTimestamp("Returning addresses for restaurant # " + restaurantId);
+        List<Address> addresses = theAddress.getAddressesByRestaurant(restaurantId);
+        return addresses;
 
     }
+
+    //View a specific location of a restaurant and its restaurant name, address, food, schedule
+//    @GetMapping("/addressAndRestaurant/{addressId}")
+//    public Address getAddressAndRestaurantById(@PathVariable int addressId) {
+//
+//        logTimestamp("Returning restaurant detail for location # " + addressId);
+//        Address addressById = theAddress.getAddressMoreDetails(addressId);
+//        return addressById;
+//
+//    }
 
     //Add new location to existing restaurant
     @ResponseStatus(HttpStatus.CREATED)

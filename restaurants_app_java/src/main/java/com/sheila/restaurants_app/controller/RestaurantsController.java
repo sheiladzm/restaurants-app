@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api") //Root path
+@CrossOrigin
 public class RestaurantsController {
 
     @Autowired
@@ -35,12 +36,12 @@ public class RestaurantsController {
 //    }
 
     //View all restaurants (names only)
-    @GetMapping(path= {"/allRestaurantsOnly", "/"})
+    @GetMapping(path= {"/allRestaurants", "/"})
     public List<Restaurant> getAllRestaurants()  {
 
         logTimestamp("Getting all restaurants");
-        List<Restaurant> allRestaurantsOnly = theRestaurant.getRestaurants();
-        return allRestaurantsOnly;
+        List<Restaurant> allRestaurants = theRestaurant.getRestaurants();
+        return allRestaurants;
 
     }
 
