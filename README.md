@@ -30,7 +30,7 @@ Form inside AddAddress component to add a new location to an existing restaurant
 
 ![Screen Shot 2022-05-11 at 8 17 51 AM](https://user-images.githubusercontent.com/101483745/167886731-f99bcf21-d0ed-46c4-a21a-4b36066bddae.png)
 
-I chose a one to many relationship to describe the relationship between restaurants and addresses as many restaurants had multiple locations.
+I chose a one to many relationship to describe the relationship between restaurants and addresses as each restaurant had one or more locations.
 
 <img width="685" alt="R-App_ERD" src="https://user-images.githubusercontent.com/101483745/167368479-a271a18e-30f7-4b7c-8048-7d5a26cd876c.png">
 
