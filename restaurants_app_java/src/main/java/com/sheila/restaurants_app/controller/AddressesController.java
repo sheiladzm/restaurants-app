@@ -5,12 +5,10 @@ import com.sheila.restaurants_app.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
 import java.util.List;
 
 //API Controller that receives incoming web requests and calls methods that retrieve/manipulate data
-
 @RestController
 @RequestMapping("/api") //Root path
 @CrossOrigin
@@ -28,51 +26,25 @@ public class AddressesController {
     //View all locations
     @GetMapping(path= {"/allAddresses", "/"})
     public List<Address> getAllAddresses()  {
-
         logTimestamp("Getting all addresses");
         List<Address> allAddresses = theAddress.getAddresses();
         return allAddresses;
-
     }
-
-    //View all restaurants and their locations
-//    @GetMapping(path= {"/allAddressesAndRestaurants", "/"})
-//    public List<Address> getAllAddressesAndRestaurants()  {
-//
-//        logTimestamp("Getting all restaurants with their addresses");
-//        List<Address> allAddressesAndRestaurants = theAddress.getAddressesWithRestaurants();
-//        return allAddressesAndRestaurants;
-//
-//    }
 
     //View a specific location of a restaurant
     @GetMapping("/address/{addressId}")
     public Address getAddressById(@PathVariable int addressId) {
-
         logTimestamp("Returning address " + addressId);
         Address address = theAddress.getAddress(addressId);
         return address;
-
     }
 
     @GetMapping("/addressesOfRestaurant/{restaurantId}")
     public List<Address> getAddressesByRestaurantId(@PathVariable int restaurantId) {
-
         logTimestamp("Returning addresses for restaurant # " + restaurantId);
         List<Address> addresses = theAddress.getAddressesByRestaurant(restaurantId);
         return addresses;
-
     }
-
-    //View a specific location of a restaurant and its restaurant name, address, food, schedule
-//    @GetMapping("/addressAndRestaurant/{addressId}")
-//    public Address getAddressAndRestaurantById(@PathVariable int addressId) {
-//
-//        logTimestamp("Returning restaurant detail for location # " + addressId);
-//        Address addressById = theAddress.getAddressMoreDetails(addressId);
-//        return addressById;
-//
-//    }
 
     //Add new location to existing restaurant
     @ResponseStatus(HttpStatus.CREATED)
@@ -96,5 +68,4 @@ public class AddressesController {
         theAddress.deleteAddress(addressId);
         logTimestamp("Removing this location " + addressId);
     }
-
 }
