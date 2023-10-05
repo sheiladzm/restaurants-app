@@ -1,29 +1,18 @@
 import axios from 'axios';
 
-// const http = axios.create({
-//   baseURL: 'http://localhost:8080/api',
-// });
-
 export default {
-  // list() {
-  //   return axios.get('http://localhost:8080/api/allAddresses/');
-  // },
-
   //View a list of all locations and details for a specific restaurantId
   list(restaurantId) {
     return axios.get(`http://localhost:8080/api/addressesOfRestaurant/${restaurantId}`);
   },
-
   //View a specific restaurant and its specific location by addressId
   get(addressId) {
     return axios.get(`http://localhost:8080/api/address/${addressId}`);
   },
-
   //Add new location to existing restaurant
   create(address) {
     return axios.post('http://localhost:8080/api/addAddress', address);
   },
-
   //Update a specific location of a restaurant
   update(address) {
     return axios.put(
@@ -31,7 +20,6 @@ export default {
       address
     );
   },
-
   //Delete a specific location of a restaurant
   delete(addressId) {
     return axios.delete(
