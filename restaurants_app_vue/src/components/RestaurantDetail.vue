@@ -1,13 +1,11 @@
 <template>
   <div class="restaurant-detail-parent">
-  
     <div class="restaurant-detail">
     <h2>This is the restaurant you selected: {{ restaurant.name }} </h2>
     <br />
     <button id="update-rest-btn" v-on:click="updateRestaurant">
       Update Restaurant
     </button>
-
     <!-- When user checks box, call deleteRestaurant method alert to ensure deletion -->
           <b>Delete Restaurant</b>
           <input
@@ -16,15 +14,11 @@
             v-on:change="deleteRestaurant($event)"
           />
     </div>
-
     <h3>These are its locations with their details:</h3> <br />
-
     <!-- Loop through every item in the list of addresses of this specific restaurant -->
      <div class="addresses" v-for="address in addresses" :key="address.addressId">
-
         <!-- Then display address details on each iteration -->
         <div class="address-text">
-
           <b>Address:</b> {{ address.name }}
           <br /><br />
           <b>Food Types:</b> {{ address.foodTypes }}
@@ -33,7 +27,6 @@
           <br /><br />
           <b>RestaurantId:</b> {{ address.restaurantId }}
           <br /><br />
-
           <div class="update-form">
             <!-- When user submits this form, call updateAddress method -->
             <form action="#" v-on:submit.prevent="updateAddress">
@@ -69,7 +62,6 @@
               <input type="submit" value="Update Location" />
               </div>
             </form>
-
           <!-- When user checks box, call deleteAddress method alert to ensure deletion -->
           <br /><br />
           <b>Delete Address</b>
@@ -81,8 +73,6 @@
           </div>
         </div>
       </div>
-
-
   </div>
 </template>
 
@@ -105,11 +95,9 @@ export default {
     };
   },
   created() {
-
     restaurantService.get(this.$route.params.id).then((restaurantData) => {
       this.restaurant = restaurantData.data;
     });
-
     addressService
       .list(this.$route.params.id)
       .then((res) => {
@@ -120,7 +108,6 @@ export default {
         });
   },
   methods: {
-
     updateRestaurant() {
       const newRestaurant = {
         restaurantId: this.$route.params.id,
@@ -138,7 +125,6 @@ export default {
           console.error(err + ' Problem updating restaurant!');
         });
     },
-
     deleteRestaurant(event) {
       if (
         confirm(
@@ -174,7 +160,6 @@ export default {
         }
       }
     },
-
     updateAddress() {
       const newAddress = {
         addressId: this.$route.params.id,
@@ -194,7 +179,6 @@ export default {
           console.error(err + ' Problem updating location!');
         });
     },
-
     deleteAddress(event) {
       if (
         confirm(
@@ -230,13 +214,11 @@ export default {
         }
       }
     },
-
   },
 };
 </script>
 
 <style scoped>
-
 .restaurant-detail-parent {
   display: flex;
   align-items: center;
