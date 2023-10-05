@@ -5,12 +5,10 @@ import com.sheila.restaurants_app.model.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
 import java.util.List;
 
 //API Controller that receives incoming web requests and calls methods that retrieve/manipulate data
-
 @RestController
 @RequestMapping("/api") //Root path
 @CrossOrigin
@@ -25,34 +23,20 @@ public class RestaurantsController {
         System.out.println(msg + " at " + timestamp);
     }
 
-//    //View all restaurants (names and their addresses)
-//    @GetMapping(path= {"/allRestaurants", "/"})
-//    public List<Restaurant> getAllRestaurantsWithAddresses()  {
-//
-//        logTimestamp("Getting all restaurants and their addresses");
-//        List<Restaurant> allRestaurants = theRestaurant.getRestaurantsWithAddresses();
-//        return allRestaurants;
-//
-//    }
-
     //View all restaurants (names only)
     @GetMapping(path= {"/allRestaurants", "/"})
     public List<Restaurant> getAllRestaurants()  {
-
         logTimestamp("Getting all restaurants");
         List<Restaurant> allRestaurants = theRestaurant.getRestaurants();
         return allRestaurants;
-
     }
 
     //View a specific restaurant
     @GetMapping("/restaurant/{restaurantId}")
     public Restaurant getRestaurantById(@PathVariable int restaurantId) {
-
         logTimestamp("Returning restaurant " + restaurantId);
         Restaurant restaurant = theRestaurant.getRestaurant(restaurantId);
         return restaurant;
-
     }
 
     //Add new restaurant (name only)
@@ -77,5 +61,4 @@ public class RestaurantsController {
         theRestaurant.deleteRestaurant(restaurantId);
         logTimestamp("Removing restaurant " + restaurantId);
     }
-
 }
