@@ -2,10 +2,8 @@
   <div id="restaurants-parent">
     <h2>ALL RESTAURANTS</h2>
     <div class="restaurantInfo">
-
       <!-- Loop through every item in the list of restaurants and restaurants -->
       <div class="restaurants" v-for="restaurant in restaurants" :key="restaurant.restaurantId">
-
         <!-- Then display restaurant name and restaurant name on each iteration -->
         <div class="restaurant-text">
           <h3>{{ restaurant.name }} </h3>
@@ -22,7 +20,6 @@
           </li>
         </ul>
         </div>
-
       </div>
     </div>
   </div>
@@ -35,7 +32,6 @@ export default {
   data() {
     return { restaurants: [] };
   },
-
   created() {
     restaurantService
       .list()
@@ -50,13 +46,11 @@ export default {
 </script>
 
 <style scoped>
-
 h2 {
   text-align: center;
   padding-top: 2em;
   padding-bottom: 2em;
 }
-
 a {
   color: black;
 }
