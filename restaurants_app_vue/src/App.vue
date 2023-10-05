@@ -6,23 +6,18 @@
       <li>
         <router-link
           v-bind:to="{ name: 'display' }"
-          
           >All Restaurants</router-link
         >
       </li>
-
       <li>
         <router-link
           v-bind:to="{ name: 'add' }"
-          
           >Add Restaurants</router-link
         >
       </li>
-
       <li>
         <router-link
           v-bind:to="{ name: 'add2' }"
-          
           >Add Address</router-link
         >
       </li>
@@ -37,11 +32,9 @@
   background: black;
   height: 5vh;
 }
-
 li {
   display: inline-block;
 }
-
 a {
   display: block;
   padding: 10px;
