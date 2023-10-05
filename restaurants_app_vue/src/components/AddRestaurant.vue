@@ -5,7 +5,6 @@
       <div class="wrapper">
         <!-- When user submits this form, call saveRestaurant method -->
         <form action="#" v-on:submit.prevent="saveRestaurant">
-
           <!-- Prompt for restaurant name -->
           <div class="field">
             <label>Name</label>
@@ -15,7 +14,6 @@
           <br />
           <div class="field">
             <input type="submit" value="Add restaurant" />
-
           </div>
         </form>
       </div>
@@ -36,32 +34,27 @@ export default {
   },
   methods: {
     saveRestaurant() {
-
-      console.log('Saving restaurant');
-
-          const newRestaurant = {
-            name: this.restaurant.name,
-          };
-
-          //Add to database and notify user success or failure
-          restaurantService
-            .create(newRestaurant)
-            .then((response) => {
-              if (response.status === 201) {
-                alert('Restaurant added!');
-                this.$router.push('/display'); //Go back to all restaurants page
-              }
-            })
-            .catch((err) => {
-              console.error(err + ' Problem adding restaurant!');
-            });
+      const newRestaurant = {
+        name: this.restaurant.name,
+      };
+      //Add to database and notify user success or failure
+      restaurantService
+        .create(newRestaurant)
+        .then((response) => {
+          if (response.status === 201) {
+            alert('Restaurant added!');
+            this.$router.push('/display'); //Go back to all restaurants page
+          }
+        })
+        .catch((err) => {
+          console.error(err + ' Problem adding restaurant!');
+        });
     },
   },
 };
 </script>
 
 <style scoped>
-
 body {
   display: flex;
   justify-content: center;
@@ -70,7 +63,6 @@ body {
   padding-top: 5%;
   padding-bottom: 20%;
 }
-
 .wrapper {
   border: 1px solid;
   padding: 20%;
@@ -80,5 +72,4 @@ body {
   flex-direction: column;
   width: 200px;
 }
-
 </style>
